@@ -1,0 +1,122 @@
+-- Require ServerSide executor
+-- Made by TheRock_EXE
+
+-- Instances:
+
+local CyberConsoleforDevs = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local CodeBar = Instance.new("TextBox")
+local UICorner = Instance.new("UICorner")
+local Execute = Instance.new("TextButton")
+local Respawn = Instance.new("TextButton")
+local R6 = Instance.new("TextButton")
+
+--Properties:
+
+CyberConsoleforDevs.Name = "CyberConsole for Devs"
+CyberConsoleforDevs.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+CyberConsoleforDevs.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = CyberConsoleforDevs
+Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Frame.Position = UDim2.new(0, 0, 0, 654)
+Frame.Size = UDim2.new(0, 1291, 0, 161)
+
+CodeBar.Name = "CodeBar"
+CodeBar.Parent = Frame
+CodeBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+CodeBar.BorderSizePixel = 0
+CodeBar.Position = UDim2.new(0, 0, 0, 37)
+CodeBar.Size = UDim2.new(0, 1008, 0, 84)
+CodeBar.ClearTextOnFocus = false
+CodeBar.Font = Enum.Font.Code
+CodeBar.PlaceholderText = "Script Here"
+CodeBar.Text = ""
+CodeBar.TextColor3 = Color3.fromRGB(255, 255, 255)
+CodeBar.TextScaled = true
+CodeBar.TextSize = 14.000
+CodeBar.TextWrapped = true
+
+UICorner.CornerRadius = UDim.new(0.25, 0)
+UICorner.Parent = CodeBar
+
+Execute.Name = "Execute"
+Execute.Parent = Frame
+Execute.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Execute.BorderColor3 = Color3.fromRGB(53, 53, 53)
+Execute.Position = UDim2.new(0, 1008, 0, 37)
+Execute.Size = UDim2.new(0, 94, 0, 84)
+Execute.Font = Enum.Font.SourceSansSemibold
+Execute.Text = "Execute"
+Execute.TextColor3 = Color3.fromRGB(255, 255, 255)
+Execute.TextScaled = true
+Execute.TextSize = 14.000
+Execute.TextWrapped = true
+
+Respawn.Name = "Respawn"
+Respawn.Parent = Frame
+Respawn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Respawn.BorderColor3 = Color3.fromRGB(53, 53, 53)
+Respawn.Position = UDim2.new(0, 1112, 0, 37)
+Respawn.Size = UDim2.new(0, 94, 0, 84)
+Respawn.Font = Enum.Font.SourceSansSemibold
+Respawn.Text = "Respawn"
+Respawn.TextColor3 = Color3.fromRGB(255, 255, 255)
+Respawn.TextScaled = true
+Respawn.TextSize = 14.000
+Respawn.TextWrapped = true
+
+R6.Name = "R6"
+R6.Parent = Frame
+R6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+R6.BorderColor3 = Color3.fromRGB(53, 53, 53)
+R6.Position = UDim2.new(0, 1217, 0, 37)
+R6.Size = UDim2.new(0, 74, 0, 84)
+R6.Font = Enum.Font.SourceSansSemibold
+R6.Text = "R6"
+R6.TextColor3 = Color3.fromRGB(255, 255, 255)
+R6.TextScaled = true
+R6.TextSize = 14.000
+R6.TextWrapped = true
+
+-- Module Scripts:
+
+local fake_module_scripts = {}
+
+do -- R6.R6
+	local script = Instance.new('ModuleScript', R6)
+	script.Name = "R6"
+	local function module_script()
+		local R6Converter = {}
+		function R6Converter.load(Plr)
+		Plr = game.Players:WaitForChild(Plr)
+		local FalseChar = script:WaitForChild("DefaultCharacter"):Clone()
+		local PlayersCharacter = game.Players:GetCharacterAppearanceAsync(Plr.UserId):Clone()
+		local FaceID = (Plr.Character:WaitForChild("Head"):FindFirstChild("face") or {Texture = "http://www.roblox.com/asset/?id=144080495"}).Texture
+		local Accessories = {}
+		FalseChar:WaitForChild("Head"):WaitForChild("face").Texture = FaceID
+		FalseChar:SetPrimaryPartCFrame(Plr.Character:WaitForChild("HumanoidRootPart").CFrame)
+		for _,Prt in pairs(PlayersCharacter:GetDescendants()) do
+		if Prt:IsA("Accessory") or Prt:IsA("Hat") or Prt:IsA("BodyColors") or Prt:IsA("CharacterMesh")or Prt:IsA("Pants") or Prt:IsA("Shirt") or Prt:IsA("ShirtGraphic") or Prt:IsA("Tool") then
+		table.insert(Accessories,Prt:Clone())
+		end
+		end
+		
+		for _,Prt in pairs(Plr.Character:GetChildren()) do
+		Prt:Destroy()
+		end
+		for _,Prt in pairs(FalseChar:GetChildren()) do
+		Prt.Parent = Plr.Character
+		end
+		for _,Prt in pairs(Accessories) do
+		Prt.Parent = Plr.Character
+		end
+		
+		
+		end
+		
+		return R6Converter
+		
+	end
+	fake_module_scripts[script] = module_script
+end 
